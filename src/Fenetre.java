@@ -5,7 +5,7 @@ public class Fenetre extends JFrame {
   /**
 	 * 
 	 */
-	private static final long serialVersionUID = 8604615210182246555L;
+	private static final long serialVersionUID = 8604615210182246555L; //Generationn d'une clé de série lié a JFrame depuis une version spécifique de java, n'en tenez pas compte c'est juste pour supprimer un warning
 
 public static void main(String[] args) {
     new Fenetre();
