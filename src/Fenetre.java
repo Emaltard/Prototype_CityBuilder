@@ -2,7 +2,12 @@ import javax.swing.JFrame;
 
 public class Fenetre extends JFrame {
 
-  public static void main(String[] args) {
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8604615210182246555L;
+
+public static void main(String[] args) {
     new Fenetre();
   }
 

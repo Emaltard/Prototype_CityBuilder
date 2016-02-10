@@ -4,7 +4,11 @@ import javax.swing.JPanel;
 
 public class Panneau extends JPanel {
 
-  private int posX = -50;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8632901552607891764L; //Generationn d'une clé de série lié a JFrame depuis une version spécifique de java, n'en tenez pas compte c'est juste pour supprimer un warning
+private int posX = -50;
   private int posY = -50;
 
   public void paintComponent(Graphics g) {
