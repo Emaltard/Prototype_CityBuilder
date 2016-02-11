@@ -4,5 +4,6 @@ public class Grille {
 	
 	public Grille(){
 		// il faut initialiser la grille
+		
 	}
 }

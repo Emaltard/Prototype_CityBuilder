@@ -1,5 +1,18 @@
+import java.awt.Color;
 
-public interface Batiment {
+
+abstract public class Batiment {
 		//Interface pour les batiments
-		//Les différents batiments doivent héritées de cette interface.
+		//Les diffÃ©rents batiments doivent hÃ©ritÃ©es de cette classe abstraite.
+		private Color col;
+		
+		public Batiment(Color col){
+			this.col = col;
+		}
+		
+		public abstract String toString();
+		
+		public Color getColor(){
+			return this.col;
+		}
 }
