@@ -7,18 +7,18 @@ public class Panneau extends JPanel {
   /**
 	 * 
 	 */
-	private static final long serialVersionUID = -8632901552607891764L; //Generationn d'une clé de série lié a JFrame depuis une version spécifique de java, n'en tenez pas compte c'est juste pour supprimer un warning
+	private static final long serialVersionUID = -8632901552607891764L; //Generationn d'une clÃ© de sÃ©rie liÃ© a JFrame depuis une version spÃ©cifique de java, n'en tenez pas compte c'est juste pour supprimer un warning
 private int posX = -50;
   private int posY = -50;
 
   public void paintComponent(Graphics g) {
-    // On décide d'une couleur de fond pour notre rectangle
+    // On dÃ©cide d'une couleur de fond pour notre rectangle
     g.setColor(Color.white);
     // On dessine celui-ci afin qu'il prenne tout la surface
     g.fillRect(0, 0, this.getWidth(), this.getHeight());
-    // On redéfinit une couleur pour notre rond
+    // On redÃ©finit une couleur pour notre rond
     g.setColor(Color.red);
-    // On le dessine aux coordonnées souhaitées
+    // On le dessine aux coordonnÃ©es souhaitÃ©es
     g.fillOval(posX, posY, 50, 50);
   }
 

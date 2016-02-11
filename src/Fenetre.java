@@ -5,17 +5,14 @@ public class Fenetre extends JFrame {
   /**
 	 * 
 	 */
-	private static final long serialVersionUID = 8604615210182246555L; //Generationn d'une clé de série lié a JFrame depuis une version spécifique de java, n'en tenez pas compte c'est juste pour supprimer un warning
+	private static final long serialVersionUID = 8604615210182246555L;
 
-public static void main(String[] args) {
-    new Fenetre();
-  }
 
   private Panneau pan = new Panneau();
 
-  public Fenetre() {
+  public Fenetre(int w, int h) {
     this.setTitle("Animation");
-    this.setSize(300, 300);
+    this.setSize(w, h);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLocationRelativeTo(null);
     this.setContentPane(pan);
@@ -25,20 +22,20 @@ public static void main(String[] args) {
   }
 
   private void go() {
-    // Les coordonnées de départ de notre rond
+    // Les coordonnÃ©es de dÃ©part de notre rond
     int x = pan.getPosX(), y = pan.getPosY();
-    // Le booléen pour savoir si l'on recule ou non sur l'axe x
+    // Le boolÃ©en pour savoir si l'on recule ou non sur l'axe x
     boolean backX = false;
-    // Le booléen pour savoir si l'on recule ou non sur l'axe y
+    // Le boolÃ©en pour savoir si l'on recule ou non sur l'axe y
     boolean backY = false;
 
     // Dans cet exemple, j'utilise une boucle while
-    // Vous verrez qu'elle fonctionne très bien
+    // Vous verrez qu'elle fonctionne trÃ¨s bien
     while (true) {
-      // Si la coordonnée x est inférieure à 1, on avance
+      // Si la coordonnÃ©e x est infÃ©rieure Ã  1, on avance
       if (x < 1)
         backX = false;
-      // Si la coordonnée x est supérieure à la taille du Panneau moins la taille du rond, on recule
+      // Si la coordonnÃ©e x est supÃ©rieure Ã  la taille du Panneau moins la taille du rond, on recule
       if (x > pan.getWidth() - 50)
         backX = true;
       // Idem pour l'axe y
@@ -47,12 +44,12 @@ public static void main(String[] args) {
       if (y > pan.getHeight() - 50)
         backY = true;
 
-      // Si on avance, on incrémente la coordonnée
-      // backX est un booléen, donc !backX revient à écrire
+      // Si on avance, on incrÃ©mente la coordonnÃ©e
+      // backX est un boolÃ©en, donc !backX revient Ã  Ã©crire
       // if (backX == false)
       if (!backX)
         pan.setPosX(++x);
-      // Sinon, on décrémente
+      // Sinon, on dÃ©crÃ©mente
       else
         pan.setPosX(--x);
       // Idem pour l'axe Y
@@ -63,7 +60,7 @@ public static void main(String[] args) {
 
       // On redessine notre Panneau
       pan.repaint();
-      // Comme on dit : la pause s'impose ! Ici, trois millièmes de seconde
+      // Comme on dit : la pause s'impose ! Ici, trois milliÃ¨mes de seconde
       try {
         Thread.sleep(3);
       } catch (InterruptedException e) {
