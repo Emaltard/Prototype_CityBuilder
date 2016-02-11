@@ -4,7 +4,6 @@ public class Main {
 		while(laun.fini == false){
 			Thread.sleep(100);
 		}
-		System.out.println("OUIIII");
 		if(laun.fini == true){
 			new Fenetre(laun.w, laun.h);
 		}
