@@ -68,7 +68,7 @@ public class Case {
 	//Méthodes pour afficher la classe Case
 	public String toString(){
 		if(this.statut == 1){
-			return "Cette case est occupé par " +this.bat.toString()+".";
+			return "Cette case est occupé par " +this.bat.toString()+". Elle est de couleur "+this.getColor()+".";
 		}
 		else{
 			return "Cette case est libre.";
