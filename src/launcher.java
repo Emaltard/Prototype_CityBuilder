@@ -6,17 +6,20 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class launcher extends JFrame implements ActionListener{
+public class Launcher extends JFrame implements ActionListener{
 
   /**
 	 * 
@@ -24,18 +27,27 @@ public class launcher extends JFrame implements ActionListener{
 	private static final long serialVersionUID = -6631269741015238763L;
 	
 	
-	public boolean fini = false;
-	public int w = 500;
-	public int h = 400;
+	private boolean fini = false; //statut du launcher : false si en cours d'exec / true si on a appuyer sur le bouton launch
+	private int w ; // longueur du launcher
+	private int h ; // hauteur du launcher
+	private String titre;
+	private JComboBox combo = new JComboBox();
 	
 	
   //Construteur de Fenetre: renseigner le titre, la longueur puis la largeur
-  public launcher(String title, int width, int height){
-	  this.setTitle(title);
-	  this.setSize(width, height);
+  public Launcher(String title, int width, int height){
+	  
+	  this.w= width; 
+	  this.h= height;
+	  this.titre= title;
+	  
+	  this.setTitle(this.titre);
+	  this.setSize(this.w, this.h);
 	  this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  this.setLocationRelativeTo(null);
 	  this.setResizable(false);
+	  this.setUndecorated(false);
+	  
 	  
 	  
 	  ImageIcon img = new ImageIcon("./images/github-mark.png");
@@ -67,6 +79,24 @@ public class launcher extends JFrame implements ActionListener{
 	    button1.addActionListener(this);
 	    
 	    
+	    
+	    
+	    JPanel b5 = new JPanel();
+	    b5.setLayout(new BoxLayout(b5, BoxLayout.LINE_AXIS));
+	    b5.add(combo);
+	    
+	    combo.addItem("Option 1");
+	    combo.addItem("Option 2");
+	    combo.addItem("Option 3");
+	    combo.addItem("Option 4");
+	    combo.addItemListener(new ItemState());
+	    combo.setPreferredSize(new Dimension(100, 20));
+
+	    combo.getSelectedItem(); // retourne l'élement selectioné Option1/Option2 ect
+	    
+	    
+	    
+	    
 	    JPanel b4 = new JPanel();
 	    //On positionne maintenant ces trois lignes en colonne
 	    b4.setLayout(new BoxLayout(b4, BoxLayout.PAGE_AXIS));
@@ -74,7 +104,10 @@ public class launcher extends JFrame implements ActionListener{
 	    b4.add(b1);
 	    b4.add(b2);
 	    b4.add(b3);
+	    b4.add(b5);
 	    b4.setLocation(50,50);
+	    
+	    
 	    
 	    JPanel background = new JPanel();
 	    background.setBackground(Color.WHITE);
@@ -82,11 +115,7 @@ public class launcher extends JFrame implements ActionListener{
 	    
 	    
 	    this.getContentPane().add(b4);
-	    this.setVisible(true);
-	    
-	    
-	    
-	    
+	    this.setVisible(true);  
   }
   
   public static Image scaleImage(Image img2, int width, int height) {
@@ -101,7 +130,27 @@ public class launcher extends JFrame implements ActionListener{
   public void actionPerformed(ActionEvent arg0) {
 	this.fini = true;
 	this.setVisible(false);
-	
+}
+  
+  public boolean getStatutLauncher()
+  {
+	  return this.fini;
+  }  
+  public int getWidth()
+  {
+	  return this.w;
+  }
+  
+  public int getHeight()
+  {
+	  return this.h;
+  }
+  
+  class ItemState implements ItemListener{
+	    public void itemStateChanged(ItemEvent e) {
+	      System.out.println("événement déclenché sur : " + e.getItem());
+	    }               
+  }
+  
 }
 	
-}
