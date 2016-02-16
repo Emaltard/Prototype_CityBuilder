@@ -9,6 +9,6 @@ public class Mairie extends Batiment{
 		
 	@Override
 	public String toString(){
-		return "Mairie";
+		return "mairie";
 	}
 }

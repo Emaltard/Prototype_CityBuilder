@@ -16,8 +16,8 @@ public class Case {
 	}
 	
 	//Habited case constructor
-	public Case(int statut, Batiment bat){
-		this.statut = statut;
+	public Case(Batiment bat){
+		this.statut = 1;
 		this.bat = bat;
 		this.col = bat.getColor();
 	}
