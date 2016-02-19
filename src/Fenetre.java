@@ -1,4 +1,6 @@
 import javax.swing.JFrame;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class Fenetre extends JFrame {
 
@@ -16,9 +18,47 @@ public class Fenetre extends JFrame {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLocationRelativeTo(null);
     this.setContentPane(pan);
+    this.setResizable(false);
     this.setVisible(true);
 
+    
+    this.addKeyListener(new KeyListener1());
     go();
+  }
+  
+  public Fenetre(boolean fullscreen)
+  {
+	  if(fullscreen == true)
+	  {
+	  this.setTitle("Animation");
+	  this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+	  this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	  this.setLocationRelativeTo(null);
+	  this.setContentPane(pan); 
+	  this.setResizable(false);
+	  this.setUndecorated(true);
+	  this.setVisible(true);
+	  
+	  
+	  this.addKeyListener(new KeyListener1());
+	  
+	  go();
+	  }
+
+  }
+  
+  public class KeyListener1 implements KeyListener{
+	    public void keyPressed(KeyEvent keyEvent) {
+	        keyEvent.getKeyCode();
+	     
+	        if (keyEvent.getKeyCode()==KeyEvent.VK_ESCAPE){
+	            System.exit(0);
+	        }
+	        }
+	    public void keyReleased(KeyEvent keyEvent) {
+	    }
+	    public void keyTyped(KeyEvent keyEvent) {
+	    }
   }
 
   private void go() {
