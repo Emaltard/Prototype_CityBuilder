@@ -6,20 +6,19 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Launcher extends JFrame implements ActionListener{
+public class Launcher extends JFrame{
 
   /**
 	 * 
@@ -31,7 +30,9 @@ public class Launcher extends JFrame implements ActionListener{
 	private int w ; // longueur du launcher
 	private int h ; // hauteur du launcher
 	private String titre;
-	private JComboBox combo = new JComboBox();
+	private JComboBox<String> combo = new JComboBox<>();
+	private boolean visible = true;
+	private boolean fullscreen = false;
 	
 	
   //Construteur de Fenetre: renseigner le titre, la longueur puis la largeur
@@ -76,26 +77,48 @@ public class Launcher extends JFrame implements ActionListener{
 	    b3.setLayout(new BoxLayout(b3, BoxLayout.LINE_AXIS));
 	    JButton button1 = new JButton("LAUNCH");
 	    b3.add(button1);
-	    button1.addActionListener(this);
+	    button1.addActionListener(new BoutonListener());
 	    
 	    
 	    
 	    
 	    JPanel b5 = new JPanel();
-	    b5.setLayout(new BoxLayout(b5, BoxLayout.LINE_AXIS));
-	    b5.add(combo);
+	    JLabel txt1 = new JLabel("Résolution : ");
 	    
-	    combo.addItem("Option 1");
-	    combo.addItem("Option 2");
-	    combo.addItem("Option 3");
-	    combo.addItem("Option 4");
-	    combo.addItemListener(new ItemState());
+	    b5.setLayout(new BoxLayout(b5, BoxLayout.LINE_AXIS));
+	    b5.add(txt1);
+	    b5.add(combo);
+	    b5.setBackground(Color.WHITE);
+	    
+	    combo.addItem("800x600");
+	    combo.addItem("600x400");
+	    combo.addItem("400x200");
+	    combo.addItem("200x200");
 	    combo.setPreferredSize(new Dimension(100, 20));
-
+	    combo.setMaximumSize(combo.getPreferredSize());
 	    combo.getSelectedItem(); // retourne l'élement selectioné Option1/Option2 ect
 	    
 	    
 	    
+	    
+	    JPanel b6 = new JPanel();
+	  	b6.setLayout(new BoxLayout(b6, BoxLayout.LINE_AXIS));
+	  	b6.add(Box.createRigidArea(new Dimension(0,50)));
+	    
+	  	
+	  	JPanel b7= new JPanel();
+	  	b7.setLayout(new BoxLayout(b7, BoxLayout.LINE_AXIS));
+	  	JLabel txt2 = new JLabel("Plein Ecran : ");
+	  	b7.add(txt2);
+	  	b7.setBackground(Color.WHITE);
+	  	JCheckBox checkbox1 = new JCheckBox();
+	  	checkbox1.addActionListener(new BoutonListener2());
+	  	b7.add(checkbox1);
+	  	
+	  	
+	  	JPanel b8 = new JPanel();
+	  	b8.setLayout(new BoxLayout(b8, BoxLayout.LINE_AXIS));
+	  	b8.add(Box.createRigidArea(new Dimension(0,30)));
 	    
 	    JPanel b4 = new JPanel();
 	    //On positionne maintenant ces trois lignes en colonne
@@ -104,7 +127,11 @@ public class Launcher extends JFrame implements ActionListener{
 	    b4.add(b1);
 	    b4.add(b2);
 	    b4.add(b3);
+	    b4.add(b6);
 	    b4.add(b5);
+	    b4.add(b8);
+	    b4.add(b7);
+	    
 	    b4.setLocation(50,50);
 	    
 	    
@@ -115,6 +142,9 @@ public class Launcher extends JFrame implements ActionListener{
 	    
 	    
 	    this.getContentPane().add(b4);
+	    
+	    
+
 	    this.setVisible(true);  
   }
   
@@ -127,10 +157,26 @@ public class Launcher extends JFrame implements ActionListener{
 	    return img;
 	}
   
-  public void actionPerformed(ActionEvent arg0) {
-	this.fini = true;
-	this.setVisible(false);
-}
+  
+  public class BoutonListener implements ActionListener{
+	     public void actionPerformed(ActionEvent e) {
+		  visible = false;
+	      fini = true;
+
+	    }
+	  }
+  
+  public class BoutonListener2 implements ActionListener{
+	     public void actionPerformed(ActionEvent e) {
+	    	 fullscreen = true;
+	    }
+	  }
+  
+  
+  public boolean getvisible()
+  {
+	  return this.visible;
+  }
   
   public boolean getStatutLauncher()
   {
@@ -146,11 +192,43 @@ public class Launcher extends JFrame implements ActionListener{
 	  return this.h;
   }
   
-  class ItemState implements ItemListener{
-	    public void itemStateChanged(ItemEvent e) {
-	      System.out.println("événement déclenché sur : " + e.getItem());
-	    }               
+  public int getWidthGame()
+  {
+   switch(combo.getSelectedItem().toString())
+   {
+   case "800x600":
+	   return 800;
+   case "600x400":
+	   return 600;
+   case "400x200":
+	   return 400;
+   case "200x200":
+	   return 200;
+	default:
+		return 50;
+   }
   }
   
+  public int getHeightGame()
+  {
+   switch(combo.getSelectedItem().toString())
+   {
+   case "800x600":
+	   return 600;
+   case "600x400":
+	   return 400;
+   case "400x200":
+	   return 200;
+   case "200x200":
+	   return 200;
+	default:
+		return 50;
+   }
+  }
+  
+  public boolean getFullScreen()
+  {
+	  return this.fullscreen;
+  }
 }
 	

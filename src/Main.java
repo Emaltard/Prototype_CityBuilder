@@ -5,7 +5,15 @@ public class Main {
 			Thread.sleep(100);
 		}
 		if(laun.getStatutLauncher() == true){
-			new Fenetre(laun.getWidth(), laun.getHeight());
+			laun.setVisible(laun.getvisible());
+			if(laun.getFullScreen()== true)
+			{
+				new Fenetre(laun.getFullScreen());
+			}
+			else
+			{
+				new Fenetre(laun.getWidthGame(), laun.getHeightGame());
+			}
 		}
 				
 	}
