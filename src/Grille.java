@@ -24,15 +24,13 @@ public class Grille {
 			this.grille.add(new Case());
 		}
 	}
-	
-//	public void setCase(int x, int y){
-//		int axe;
-//		y = y*this.nbCasesLignes;
-//		axe = y+x;
-//		Case cas = this.grille.get(axe);
-//		cas.setOccuper()
-//		//TODO: Faire les setter.
-//	}
+//Liste des batiments leurs taille et couleur.
+//	Mairie : 2x2 rouge
+//	Maison : 1x1 jaune
+//	Police : 1x1 bleu
+//	Route: 1x1 gris
+//	Herbe: 1x1 vert
+//	Atelier: 2x2 marron
 	
 	public void setMairie(int x, int y){//Envoyer x et y en partant du haut-droite de (0, 0) jusqu'� la taille de la grille obtenable gr�ce � la m�thode int getTaille();
 		setCase(x, y, new Mairie(), 2, 2);
@@ -40,6 +38,22 @@ public class Grille {
 	
 	public void setRoute(int x, int y){
 		setCase(x, y, new Route(), 1, 1);
+	}
+
+	public void setMaison(int x, int y){
+		setCase(x, y, new Maison(), 1, 1);
+	}
+	
+	public void setPolice(int x, int y){
+		setCase(x, y, new Police(), 1, 1);
+	}
+	
+	public void setHerbe(int x, int y){
+		this.setLibre(x, y);
+	}
+	
+	public void setAtelier(int x, int y){
+		this.setCase(x, y, new Atelier(), 2, 2);
 	}
 	
 	public void setLibre(int x, int y){
@@ -107,12 +121,6 @@ public class Grille {
 		}
 		return res;
 	}
-	
-//	Mairie : 2x2 rouge
-//	Maison : 1x1 jaune
-//	Police : 1x1 bleu
-//	Route: 1x1 gris
-//	Herbe: 1x1 vert
-//	Atelier: 2x2 marron
+		
 
 }
