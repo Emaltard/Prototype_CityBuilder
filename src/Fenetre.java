@@ -48,6 +48,8 @@ public class Fenetre extends JFrame {
 
   }
   
+  
+  
   public class KeyListener1 implements KeyListener{
 	    public void keyPressed(KeyEvent keyEvent) {
 	        keyEvent.getKeyCode();
@@ -63,15 +65,16 @@ public class Fenetre extends JFrame {
   }
 
   private void go() {
-	  
-	 Grille grille_game = pan.get_grille();
-	 grille_game.setMairie(3, 4);
-	 grille_game.setRoute(2,4);
-      try {
-        Thread.sleep(3);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
+	  while(true)
+	  {
+		  try {
+		        Thread.sleep(16);
+		      } catch (InterruptedException e) {
+		        e.printStackTrace();
+		      }
+		  pan.repaint();
+	  }
+      
     }
   
   
