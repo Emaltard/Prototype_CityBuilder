@@ -9,8 +9,8 @@ public class Grille {
 	
 	public Grille(){
 		// il faut initialiser la grille
-		grille = new ArrayList<Case>();
-		nbCasesLignes = 200;
+		this.grille = new ArrayList<Case>();
+		this.nbCasesLignes = 200;
 		
 		for(int i = 0; i<((this.nbCasesLignes)*(this.nbCasesLignes)); i++){
 			this.grille.add(new Case());
@@ -34,28 +34,30 @@ public class Grille {
 //		//TODO: Faire les setter.
 //	}
 	
-	public void setMairie(int x, int y){//Envoyer x et y en partant du haut-droite de (0, 0) jusqu'à la taille de la grille obtenable grâce à la méthode int getTaille();
-		int axe;
-		y = y*this.nbCasesLignes;
-		axe = y+x;
-		Case cas = this.grille.get(axe);
-		cas.setOccuper(new Mairie());
+	public void setMairie(int x, int y){//Envoyer x et y en partant du haut-droite de (0, 0) jusqu'ï¿½ la taille de la grille obtenable grï¿½ce ï¿½ la mï¿½thode int getTaille();
+		setCase(x, y, new Mairie(), 2, 2);
 	}
 	
 	public void setRoute(int x, int y){
-		int axe;
-		y = y*this.nbCasesLignes;
-		axe = y+x;
-		Case cas = this.grille.get(axe);
-		cas.setOccuper(new Route());
+		setCase(x, y, new Route(), 1, 1);
 	}
 	
 	public void setLibre(int x, int y){
-		int axe;
-		y = y*this.nbCasesLignes;
-		axe = y+x;
-		Case cas = this.grille.get(axe);
-		cas.setVide();
+		int axe, xtemp, ytemp;
+		Case cas;
+		xtemp = x;
+		ytemp = y*this.nbCasesLignes;
+		axe = xtemp + ytemp;
+		cas = this.grille.get(axe);
+		for(int i = 0; i<cas.getBatiment().getTailleX(); i++){
+			for(int j = 0; j<cas.getBatiment().getTailleY(); j++){
+				xtemp = (x+i);
+				ytemp = (y+j)*this.nbCasesLignes;
+				axe = xtemp+ytemp;
+				cas = this.grille.get(axe);
+				cas.setVide();
+			}
+		}		
 	}
 	
 	public int getTaille(){
@@ -70,6 +72,32 @@ public class Grille {
 		return cas.getColor();
 	}
 	
+	private int setCase(int x, int y, Batiment bat, int taillex, int tailley){
+		int axe, xtemp, ytemp;
+		Case cas;
+		for(int i = 0; i<taillex; i++){
+			for(int j = 0; j<tailley; j++){
+				xtemp = (x+i);
+				ytemp = (y+j)*this.nbCasesLignes;
+				axe = xtemp+ytemp;
+				cas = this.grille.get(axe);
+				if(cas.getStatut() != 0){
+					return -1;
+				}
+			}
+		}
+		for(int i = 0; i<taillex; i++){
+			for(int j = 0; j<tailley; j++){
+				xtemp = (x+i);
+				ytemp = (y+j)*this.nbCasesLignes;
+				axe = xtemp+ytemp;
+				cas = this.grille.get(axe);
+				cas.setOccuper(bat);
+			}
+		}
+		return 0;
+	}
+	
 	public String toString(){
 		String res = new String();
 		for(int i = 0; i<(this.nbCasesLignes*this.nbCasesLignes); i++){
@@ -79,5 +107,12 @@ public class Grille {
 		}
 		return res;
 	}
+	
+//	Mairie : 2x2 rouge
+//	Maison : 1x1 jaune
+//	Police : 1x1 bleu
+//	Route: 1x1 gris
+//	Herbe: 1x1 vert
+//	Atelier: 2x2 marron
 
 }

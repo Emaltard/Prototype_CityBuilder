@@ -9,7 +9,7 @@ public class Route extends Batiment{
 
 	@Override
 	public String toString() {
-		return "route";
+		return "route de taille "+this.getTailleX()+"x"+this.getTailleY();
 	}
 
 }
