@@ -168,7 +168,7 @@ public class Launcher extends JFrame{
   
   public class BoutonListener2 implements ActionListener{
 	     public void actionPerformed(ActionEvent e) {
-	    	 fullscreen = true;
+	    	 fullscreen = !fullscreen;
 	    }
 	  }
   
