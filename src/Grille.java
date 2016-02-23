@@ -40,8 +40,8 @@ public class Grille {
 		setCase(x, y, new Route(), 1, 1);
 	}
 
-	public void setMaison(int x, int y){
-		setCase(x, y, new Maison(), 1, 1);
+	public void setMaison(int x, int y, int nbHabMax){
+		setCase(x, y, new Maison(nbHabMax), 1, 1);
 	}
 	
 	public void setPolice(int x, int y){
@@ -89,7 +89,6 @@ public class Grille {
 	private int setCase(int x, int y, Batiment bat, int taillex, int tailley){
 		int axe, xtemp, ytemp;
 		Case cas;
-		//TODO: Revoir calcul des cases !!!
 		for(int i = 0; i<taillex; i++){
 			for(int j = 0; j<tailley; j++){
 				xtemp = (x+i);
