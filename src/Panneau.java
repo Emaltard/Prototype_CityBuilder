@@ -22,8 +22,15 @@ public class Panneau extends JPanel {
 	final int TILE_HEIGHT = 32;
 	int screenx;
 	int screeny;
-	final int dx = 1200/2 ;
-	final int dy = ((800/2)-((nb_cases_par_lignes/2)*TILE_HEIGHT));
+	int dx;
+	int dy;
+	boolean changement = false;
+	
+	public Panneau(int w, int h)
+	{
+		dx = w / 2;
+		dy = ((h/2)-((nb_cases_par_lignes/2)*TILE_HEIGHT));
+	}
 	
   public void paintComponent(Graphics g) {
     for(int mapx = 0; mapx<nb_cases_par_lignes; mapx++)
@@ -90,8 +97,12 @@ public class Panneau extends JPanel {
 			
 			int mapx = Math.round(mapx_float);
 			int mapy = Math.round(mapy_float);
+			if(mapx<nb_cases_par_lignes && mapy<nb_cases_par_lignes && mapx>=0 && mapy>=0)
+			{
+				grille_game.setRoute(mapx, mapy);
+				changement = true;
+			}
 			
-			grille_game.setRoute(mapx, mapy);
 			
 		}
 

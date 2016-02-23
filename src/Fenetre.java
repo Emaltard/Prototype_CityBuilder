@@ -1,4 +1,8 @@
 import javax.swing.JFrame;
+
+import java.awt.Toolkit;
+
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -9,15 +13,23 @@ public class Fenetre extends JFrame {
 	 */
 	private static final long serialVersionUID = 8604615210182246555L;
 
-
-  private Panneau pan = new Panneau();
+	private int width_game;
+	private int height_game;
+  private Panneau pan;
 
   public Fenetre(int w, int h) {
     this.setTitle("City Builder");
-    this.setSize(w, h);
+    this.width_game = w;
+    this.height_game = h;
+    this.setSize(width_game, height_game);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLocationRelativeTo(null);
+    
+    this.pan = new Panneau(width_game, height_game);
+    
     this.setContentPane(pan);
+    
+    
     this.setResizable(false);
     this.setVisible(true);
 
@@ -34,9 +46,22 @@ public class Fenetre extends JFrame {
 	  this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	  this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  this.setLocationRelativeTo(null);
-	  this.setContentPane(pan); 
 	  this.setResizable(false);
 	  this.setUndecorated(true);
+	  
+	  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	  double width = screenSize.getWidth();
+	  double height = screenSize.getHeight();
+	  
+	  this.width_game =  (int) width;
+	  this.height_game = (int) height;
+	  
+	  
+	  System.out.println(width_game);
+	  this.pan = new Panneau(width_game, height_game);
+	  
+	  this.setContentPane(pan); 
+	  
 	  this.setVisible(true);
 	  
 	  
@@ -72,7 +97,12 @@ public class Fenetre extends JFrame {
 		      } catch (InterruptedException e) {
 		        e.printStackTrace();
 		      }
-		  pan.repaint();
+		  if(pan.changement == true){
+			  pan.repaint();
+			  System.out.println(pan.changement);
+			  pan.changement = false;
+		  }
+		  
 	  }
       
     }
