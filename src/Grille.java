@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.util.*;
+import java.io.*;
 
 public class Grille {
 	
@@ -111,13 +112,13 @@ public class Grille {
 		}
 		return 0;
 	}
+
 	
 	public String toString(){
 		String res = new String();
 		for(int i = 0; i<(this.nbCasesLignes*this.nbCasesLignes); i++){
 			res += this.grille.get(i).toString();
 			res += "\n";
-//			System.out.println("Test "+i);
 		}
 		return res;
 	}
