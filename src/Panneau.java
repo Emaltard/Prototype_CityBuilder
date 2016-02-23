@@ -30,6 +30,7 @@ public class Panneau extends JPanel {
 	int dy;
 	boolean changement = false;
 	private BufferedImage tile_grass;
+	private BufferedImage tile_road;
 	
 	public Panneau(int w, int h)
 	{
@@ -37,6 +38,7 @@ public class Panneau extends JPanel {
 		dy = ((h/2)-((nb_cases_par_lignes/2)*TILE_HEIGHT));
 		try {
 			tile_grass = ImageIO.read(new File("./images/tile_grass.png"));
+			tile_road = ImageIO.read(new File("./images/tile_road.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -69,8 +71,12 @@ public class Panneau extends JPanel {
     		{
     				g.drawImage(tile_grass, screenx - TILE_WIDTH/2, screeny, this);
     		}
-    		else{
-    		
+    		else if(grille_game.getCaseColor(mapx, mapy)== Color.gray)
+    		{
+    			g.drawImage(tile_road, screenx - TILE_WIDTH/2, screeny - 3, this);
+    		}
+    		else
+    		{
     		
     		Polygon tile = new Polygon(polx,poly,4);
     		
@@ -83,7 +89,7 @@ public class Panneau extends JPanel {
     		g.fillPolygon(tile);
     		
     		
-    		}
+    		
     		
     		g.setColor(Color.gray);
     		
@@ -95,7 +101,7 @@ public class Panneau extends JPanel {
     		g.drawLine(x3,y3,x2,y2);
     		
     		g.drawLine(x4,y4,x3,y3); */
-    		
+    		}
     	}
     }
     this.addMouseListener(new MouseListener1());

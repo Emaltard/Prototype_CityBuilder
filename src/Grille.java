@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.util.*;
-import java.io.*;
 
 public class Grille {
 	
