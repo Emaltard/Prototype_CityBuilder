@@ -56,8 +56,6 @@ public class Fenetre extends JFrame {
 	  this.width_game =  (int) width;
 	  this.height_game = (int) height;
 	  
-	  
-	  System.out.println(width_game);
 	  this.pan = new Panneau(width_game, height_game);
 	  
 	  this.setContentPane(pan); 

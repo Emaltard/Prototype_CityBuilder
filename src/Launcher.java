@@ -90,11 +90,12 @@ public class Launcher extends JFrame{
 	    b5.add(combo);
 	    b5.setBackground(Color.WHITE);
 	    
+	    combo.addItem("1600x1000");
 	    combo.addItem("1200x800");
 	    combo.addItem("600x400");
 	    combo.addItem("400x200");
 	    combo.addItem("200x200");
-	    combo.setPreferredSize(new Dimension(100, 20));
+	    combo.setPreferredSize(new Dimension(110, 20));
 	    combo.setMaximumSize(combo.getPreferredSize());
 	    combo.getSelectedItem(); // retourne l'élement selectioné Option1/Option2 ect
 	    
@@ -196,6 +197,8 @@ public class Launcher extends JFrame{
   {
    switch(combo.getSelectedItem().toString())
    {
+   case "1600x1000":
+	   return 1600;
    case "1200x800":
 	   return 1200;
    case "600x400":
@@ -213,6 +216,8 @@ public class Launcher extends JFrame{
   {
    switch(combo.getSelectedItem().toString())
    {
+   case "1600x1000":
+	   return 1000;
    case "1200x800":
 	   return 800;
    case "600x400":
