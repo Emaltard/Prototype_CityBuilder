@@ -38,7 +38,7 @@ public class Panneau extends JPanel {
 		dy = ((h/2)-((nb_cases_par_lignes/2)*TILE_HEIGHT));
 		try {
 			tile_grass = ImageIO.read(new File("./images/tile_grass.png"));
-			tile_road = ImageIO.read(new File("./images/tile_road.png"));
+			tile_road = ImageIO.read(new File("./images/tile_road_line.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -73,7 +73,7 @@ public class Panneau extends JPanel {
     		}
     		else if(grille_game.getCaseColor(mapx, mapy)== Color.gray)
     		{
-    			g.drawImage(tile_road, screenx - TILE_WIDTH/2, screeny - 3, this);
+    			g.drawImage(tile_road, screenx - TILE_WIDTH/2, screeny, this);
     		}
     		else
     		{
