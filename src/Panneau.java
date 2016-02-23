@@ -4,7 +4,11 @@ import java.awt.Graphics;
 import java.awt.Polygon;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class Panneau extends JPanel {
@@ -25,11 +29,17 @@ public class Panneau extends JPanel {
 	int dx;
 	int dy;
 	boolean changement = false;
+	private BufferedImage tile_grass;
 	
 	public Panneau(int w, int h)
 	{
 		dx = w / 2;
 		dy = ((h/2)-((nb_cases_par_lignes/2)*TILE_HEIGHT));
+		try {
+			tile_grass = ImageIO.read(new File("./images/tile_grass.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
   public void paintComponent(Graphics g) {
@@ -54,6 +64,14 @@ public class Panneau extends JPanel {
     		int y4 = screeny + (TILE_HEIGHT/2);
     		int [] polx = { x1, x2, x3, x4};
     		int [] poly = {y1, y2, y3, y4};
+    		
+    		if(grille_game.getCaseColor(mapx, mapy) == Color.green)
+    		{
+    				g.drawImage(tile_grass, screenx - TILE_WIDTH/2, screeny, this);
+    		}
+    		else{
+    		
+    		
     		Polygon tile = new Polygon(polx,poly,4);
     		
     		//float r_color = rand.nextFloat();
@@ -64,16 +82,19 @@ public class Panneau extends JPanel {
     		g.setColor(grille_game.getCaseColor(mapx,mapy));
     		g.fillPolygon(tile);
     		
+    		
+    		}
+    		
     		g.setColor(Color.gray);
     		
-    		
+    		/*
     		g.drawLine(x1,y1,x2,y2);
     		
     		g.drawLine(x1,y1,x4,y4);
     		
     		g.drawLine(x3,y3,x2,y2);
     		
-    		g.drawLine(x4,y4,x3,y3);
+    		g.drawLine(x4,y4,x3,y3); */
     		
     	}
     }
