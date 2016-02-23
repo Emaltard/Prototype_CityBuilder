@@ -40,8 +40,8 @@ public class Grille {
 		setCase(x, y, new Route(), 1, 1);
 	}
 
-	public void setMaison(int x, int y){
-		setCase(x, y, new Maison(), 1, 1);
+	public void setMaison(int x, int y, int nbHabMax){
+		setCase(x, y, new Maison(nbHabMax), 1, 1);
 	}
 	
 	public void setPolice(int x, int y){
