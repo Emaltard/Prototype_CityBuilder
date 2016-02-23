@@ -32,6 +32,7 @@ public class Panneau extends JPanel {
 	private BufferedImage tile_grass;
 	private BufferedImage tile_road_line;
 	private BufferedImage tile_road_cross;
+	private BufferedImage tile_road_line_2;
 	
 	public Panneau(int w, int h)
 	{
@@ -40,6 +41,7 @@ public class Panneau extends JPanel {
 		try {
 			tile_grass = ImageIO.read(new File("./images/tile_grass.png"));
 			tile_road_line = ImageIO.read(new File("./images/tile_road_line.png"));
+			tile_road_line_2 = ImageIO.read(new File("./images/tile_road_line_2.png"));
 			tile_road_cross = ImageIO.read(new File("./images/tile_road_cross.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -80,6 +82,10 @@ public class Panneau extends JPanel {
     		else if(grille_game.getCaseColor(mapx, mapy)== Color.darkGray)
     		{
     			g.drawImage(tile_road_cross, screenx - TILE_WIDTH/2, screeny, this);
+    		}
+    		else if(grille_game.getCaseColor(mapx, mapy)== Color.lightGray)
+    		{
+    			g.drawImage(tile_road_line_2, screenx - TILE_WIDTH/2, screeny, this);
     		}
     		else
     		{
@@ -156,9 +162,10 @@ public class Panneau extends JPanel {
 			           	grille_game.setRoute(mapx, mapy);
 						changement = true;
 			    } else if(buttonDown == MouseEvent.BUTTON2) {
-			           // Bouton du MILIEU enfoncé
-			    } else if(buttonDown == MouseEvent.BUTTON3) {
 			    		grille_game.setRoute_Cross(mapx, mapy);
+			    		changement = true;
+			    } else if(buttonDown == MouseEvent.BUTTON3) {
+			    		grille_game.setRoute_2(mapx, mapy);
 			    		changement = true;
 			    }
 				

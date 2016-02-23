@@ -43,6 +43,10 @@ public class Grille {
 	public void setRoute_Cross(int x, int y){
 		setCase(x,y, new Route_Cross(), 1, 1);
 	}
+	
+	public void setRoute_2(int x, int y){
+		setCase(x,y, new Route_2(), 1, 1);
+	}
 
 	public void setMaison(int x, int y, int nbHabMax){
 		setCase(x, y, new Maison(nbHabMax), 1, 1);
