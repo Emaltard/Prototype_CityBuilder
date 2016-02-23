@@ -30,7 +30,8 @@ public class Panneau extends JPanel {
 	int dy;
 	boolean changement = false;
 	private BufferedImage tile_grass;
-	private BufferedImage tile_road;
+	private BufferedImage tile_road_line;
+	private BufferedImage tile_road_cross;
 	
 	public Panneau(int w, int h)
 	{
@@ -38,7 +39,8 @@ public class Panneau extends JPanel {
 		dy = ((h/2)-((nb_cases_par_lignes/2)*TILE_HEIGHT));
 		try {
 			tile_grass = ImageIO.read(new File("./images/tile_grass.png"));
-			tile_road = ImageIO.read(new File("./images/tile_road_line.png"));
+			tile_road_line = ImageIO.read(new File("./images/tile_road_line.png"));
+			tile_road_cross = ImageIO.read(new File("./images/tile_road_cross.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -73,7 +75,11 @@ public class Panneau extends JPanel {
     		}
     		else if(grille_game.getCaseColor(mapx, mapy)== Color.gray)
     		{
-    			g.drawImage(tile_road, screenx - TILE_WIDTH/2, screeny, this);
+    			g.drawImage(tile_road_line, screenx - TILE_WIDTH/2, screeny, this);
+    		}
+    		else if(grille_game.getCaseColor(mapx, mapy)== Color.darkGray)
+    		{
+    			g.drawImage(tile_road_cross, screenx - TILE_WIDTH/2, screeny, this);
     		}
     		else
     		{
@@ -116,6 +122,7 @@ public class Panneau extends JPanel {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			int buttonDown = e.getButton();
 			float screenx_float =  e.getX() - dx;
 			float screeny_float = e.getY() -dy - TILE_HEIGHT/2;
 			
@@ -126,8 +133,16 @@ public class Panneau extends JPanel {
 			int mapy = Math.round(mapy_float);
 			if(mapx<nb_cases_par_lignes && mapy<nb_cases_par_lignes && mapx>=0 && mapy>=0)
 			{
-				grille_game.setRoute(mapx, mapy);
-				changement = true;
+				if (buttonDown == MouseEvent.BUTTON1) {
+			           	grille_game.setRoute(mapx, mapy);
+						changement = true;
+			    } else if(buttonDown == MouseEvent.BUTTON2) {
+			           // Bouton du MILIEU enfoncé
+			    } else if(buttonDown == MouseEvent.BUTTON3) {
+			    		grille_game.setRoute_Cross(mapx, mapy);
+			    		changement = true;
+			    }
+				
 			}
 			
 			
