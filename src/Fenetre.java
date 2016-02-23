@@ -99,7 +99,6 @@ public class Fenetre extends JFrame {
 		      }
 		  if(pan.changement == true){
 			  pan.repaint();
-			  System.out.println(pan.changement);
 			  pan.changement = false;
 		  }
 		  

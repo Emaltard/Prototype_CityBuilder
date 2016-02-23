@@ -122,6 +122,25 @@ public class Panneau extends JPanel {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
+
+			
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
 			int buttonDown = e.getButton();
 			float screenx_float =  e.getX() - dx;
 			float screeny_float = e.getY() -dy - TILE_HEIGHT/2;
@@ -144,25 +163,6 @@ public class Panneau extends JPanel {
 			    }
 				
 			}
-			
-			
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
 
