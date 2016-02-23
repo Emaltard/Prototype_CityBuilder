@@ -89,7 +89,6 @@ public class Grille {
 	private int setCase(int x, int y, Batiment bat, int taillex, int tailley){
 		int axe, xtemp, ytemp;
 		Case cas;
-		//TODO: Revoir calcul des cases !!!
 		for(int i = 0; i<taillex; i++){
 			for(int j = 0; j<tailley; j++){
 				xtemp = (x+i);
